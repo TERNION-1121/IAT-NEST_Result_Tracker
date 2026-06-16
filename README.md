@@ -4,10 +4,14 @@ Track the status of the applicant login page for _IISER Aptitude Test_ **(IAT)**
 Inspired from [DikshitRJ/fackNTA](https://github.com/DikshitRJ/fackNTA)
 
 ```bash
+Login page inactive | Code 200: No changes at Tue, 16 Jun 2026 12:16:09
+Login page inactive | Code 200: No changes at Tue, 16 Jun 2026 12:17:10
+Login page inactive | Code 200: No changes at Tue, 16 Jun 2026 12:18:10
+Login page inactive | Code 200: No changes at Tue, 16 Jun 2026 12:19:10
 Login Page is Active!
 >>> SITE IS UPDATED! Time: Tue, 16 Jun 2026 12:20:11
 ```
-> Sample terminal output when the Applicant Login Form is active 
+> Sample terminal output when the Applicant Login Form goes active 
 
 ## Working
 The script looks for specific signatures within the response HTML fetched from the Applicant Login Page's URL for the respective exam (either IAT or NEST).

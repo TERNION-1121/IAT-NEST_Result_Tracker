@@ -9,6 +9,7 @@ ALARM_FILE = "alarm.mp3"
 # IAT Applicant login links
 IAT = "https://cdn.digialm.com/EForms/configuredHtml/2245/98100/login.html"
 IAT2 = "https://g06.tcsion.com//EForms/loginAction.do?subAction=ViewLoginPage&formId=98100&orgId=2245"
+IAT_EDIT_APPL = "https://cdn.digialm.com/EForms/editApplication.do"
 # NEST Applicant login links
 NEST = "https://cdn3.digialm.com/EForms/configuredHtml/1834/97119/login.html"
 
@@ -16,17 +17,16 @@ def play_alarm():
 	'''
 	Play the alarm sound 3 times
 	'''
-    mixer.init()
-    mixer.music.load(ALARM_FILE)
-    mixer.music.set_volume(1.0)   # max volume
-    mixer.music.play(loops=3)     
+	mixer.init()
+	mixer.music.load(ALARM_FILE)
+	mixer.music.set_volume(1.0)	# max volume
+	mixer.music.play(loops=3)
 
-    # Keep the program running while playing
-    try:
-        while mixer.music.get_busy():
-            time.sleep(1)
-    except KeyboardInterrupt:
-        mixer.music.stop()
+	try:
+		while mixer.music.get_busy():
+			time.sleep(1)
+	except KeyboardInterrupt:
+		mixer.music.stop()
 
 def validate_response(response_text):
 	'''

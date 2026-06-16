@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 from pygame import mixer 
 
-import difflib
 import requests as req 
 import time 
 

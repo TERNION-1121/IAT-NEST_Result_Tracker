@@ -1,30 +1,30 @@
 from bs4 import BeautifulSoup
+from os import system
 from pygame import mixer 
 
+import argparse
 import requests as req 
 import time 
 
 ALARM_FILE = "alarm.mp3"
-# IAT Applicant login links
-IAT = "https://cdn.digialm.com/EForms/configuredHtml/2245/98100/login.html"
-IAT2 = "https://g06.tcsion.com//EForms/loginAction.do?subAction=ViewLoginPage&formId=98100&orgId=2245"
-IAT_EDIT_APPL = "https://cdn.digialm.com/EForms/editApplication.do"
-# NEST Applicant login links
-NEST = "https://cdn3.digialm.com/EForms/configuredHtml/1834/97119/login.html"
+URL = {	
+		'IAT' : "https://cdn.digialm.com/EForms/configuredHtml/2245/98100/login.html",
+		'NEST':	"https://cdn3.digialm.com/EForms/configuredHtml/1834/97119/login.html"
+		}
 
 def play_alarm():
 	'''
-	Play the alarm sound 3 times
+	Play the alarm sound indefinitely until KeyboardInterrupt
 	'''
 	mixer.init()
 	mixer.music.load(ALARM_FILE)
 	mixer.music.set_volume(1.0)	# max volume
-	mixer.music.play(loops=3)
+	mixer.music.play(loops=-1)	# play indefinitely
 
 	try:
 		while mixer.music.get_busy():
 			time.sleep(1)
-	except KeyboardInterrupt:
+	except KeyboardInterrupt: 
 		mixer.music.stop()
 
 def validate_response(response_text):
@@ -69,10 +69,9 @@ def validate_response(response_text):
 	except Exception as e:
 		print(f"Unexpected Exception Raised: {e}")
 
+def tracker(exam: str, sleep_interval=60, save_last_response=False):
 
-def main(sleep_bw_reqs=60, save_last_response=False):
-
-	while (r := req.get(IAT, timeout=5)).status_code == req.codes.ok:
+	while (r := req.get(URL[exam], timeout=5)).status_code == req.codes.ok:
 
 		contents = r.text.strip(" \n\t")
 
@@ -89,13 +88,28 @@ def main(sleep_bw_reqs=60, save_last_response=False):
 
 		print(f"Code {r.status_code}: No changes at {readable_time}")
 
-		time.sleep(sleep_bw_reqs)
+		time.sleep(sleep_interval)
 
 	else:
 		print(f"Status Code NOT OK: {r.status_code}")
 		r.raise_for_status()
 
+def main():
+	system("cls||clear") # clear terminal screen before execution
+
+	parser = argparse.ArgumentParser(
+						prog='IAT-NEST Result Tracker',
+						description='Track the status of the applicant login page for IISER Aptitude Test (IAT) and/or National Entrance Screening Test (NEST) exams using a simple Python script and notify the user upon encountering desirable changes.',
+						epilog='Made by TERNION, for the community')
+
+	parser.add_argument('exam', choices=['IAT', 'NEST'])
+	parser.add_argument('-s', '--save', action='store_true', help="externally save the html response body pertaining to the last url request")
+	parser.add_argument('-t', '--interval', type=int, default=60, help='time interval between successive url requests')
+
+	args = parser.parse_args()
+
+	tracker(exam=args.exam, sleep_interval=args.interval, save_last_response=args.save)
+
 
 if __name__ == "__main__":
-	main(save_last_response=True)
-	
+	main()

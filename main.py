@@ -98,7 +98,6 @@ def main():
 	system("cls||clear") # clear terminal screen before execution
 
 	parser = argparse.ArgumentParser(
-						prog='IAT-NEST Result Tracker',
 						description='Track the status of the applicant login page for IISER Aptitude Test (IAT) and/or National Entrance Screening Test (NEST) exams using a simple Python script and notify the user upon encountering desirable changes.',
 						epilog='Made by TERNION, for the community')
 

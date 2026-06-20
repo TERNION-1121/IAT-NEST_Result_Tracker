@@ -1,4 +1,8 @@
 # IAT-NEST Result Tracker
+
+![NEST](https://www.nestexam.in/assets/img/nest-logo-sml.png)
+> Apparently there's no logo for IAT :/
+
 Track the status of the applicant login page for _IISER Aptitude Test_ **(IAT)** and/or _National Entrance Screening Test_ **(NEST)** exams using a simple Python script and notify the user upon encountering desirable changes.
 
 Inspired from [DikshitRJ/fackNTA](https://github.com/DikshitRJ/fackNTA)
@@ -26,15 +30,37 @@ body engaged in providing these online services is the same for both IAT and NES
 - Download/Clone this GitHub Repository
 - Navigate to the repository directory on your device
 - Install the requirements using the following terminal command :
-    `pip install -r requirements.txt` 
+    `pip install -r requirements.txt`
+> [!NOTE]
+> You might be required to create a [virtual environment](https://docs.python.org/3/library/venv.html) to install the requirements.
 - Run the script:
-    `python main.py`
-    > use `python3 main.py` on Linux/MacOS
+    `python main.py --help`
+    > use `python3 main.py --help` on Linux/MacOS
+- The help message for using the command line utility will be displayed. Use the CLI as per the available arguments and your desire.
+```bash
+usage: main.py [-h] [-s] [-t INTERVAL] {IAT,NEST}
+
+Track the status of the applicant login page for IISER Aptitude Test (IAT)
+and/or National Entrance Screening Test (NEST) exams using a simple Python
+script and notify the user upon encountering desirable changes.
+
+positional arguments:
+  {IAT,NEST}
+
+options:
+  -h, --help            show this help message and exit
+  -s, --save            externally save the html response body pertaining to
+                        the last url request
+  -t INTERVAL, --interval INTERVAL
+                        time interval between successive url requests
+
+Made by TERNION, for the community
+```
+<br>
 
 The script sends a request to the corresponding exam's Applicant Login URL once every minute (this duration can be changed in the code). Upon confirmation that the Applicant Login Form has gone live — an alert is displayed on the terminal and an alarm sound is played alongside that.
 > You can change your alarm sound by recording your own alarm sound and saving it in the directory of the repository with the name `alarm.mp3`
 
 ## End Notes
-The plan is to convert this script into a simple Command Line Interface (CLI) so that users can easily choose between IAT/NEST and also configure some settings at their own convenience without playing with the code directly. 
 
 Meaningful contributions towards this project are appreciated and welcomed!

@@ -8,8 +8,8 @@ import time
 
 ALARM_FILE = "alarm.mp3"
 URL = {	
-		'IAT' : "https://cdn.digialm.com/EForms/configuredHtml/2245/98100/login.html",
-		'NEST':	"https://cdn3.digialm.com/EForms/configuredHtml/1834/97119/login.html"
+		'IAT' : "https://g06.tcsion.com//EForms/loginAction.do?subAction=ViewLoginPage&formId=98100&orgId=2245",
+		'NEST':	"https://g06.tcsion.com//EForms/loginAction.do?subAction=ViewLoginPage&formId=97119&orgId=1834"
 		}
 
 def play_alarm():

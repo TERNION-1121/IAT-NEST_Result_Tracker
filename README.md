@@ -56,6 +56,8 @@ options:
 
 Made by TERNION, for the community
 ```
+- To exit the program, use Keyboard Interrupt: `Ctrl + C`
+- 
 <br>
 
 The script sends a request to the corresponding exam's Applicant Login URL once every minute (this duration can be changed in the code). Upon confirmation that the Applicant Login Form has gone live — an alert is displayed on the terminal and an alarm sound is played alongside that.
